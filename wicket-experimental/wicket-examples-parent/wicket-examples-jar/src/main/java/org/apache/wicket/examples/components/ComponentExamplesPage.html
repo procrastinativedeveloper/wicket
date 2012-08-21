@@ -351,7 +351,46 @@ add(new PagingNavigator(&quot;navigator&quot;, dataView)); </pre>
 		<section id="forms">
 			<div class="page-header">
 				<h1>Forms <small>Form components, fields and other input devices</small></h1>
+                <p>Form is component for grouping other components, the data gathered in this way should be processed only when all provided inputs are valid.
+                    This mechanism give us very powerfull tool for acquiring, validating and processing data.</p>
 			</div>
+
+            <div class="row">
+                  <div class="span6">
+                      <h3>Simple form example</h3>
+                      <p>This simple example is showing very basic version of form with two textfields where use can put his firstname and lastname.On the form we should also put a button which submit the form. Firstly we could design our form in html: </p>
+                      <pre class="prettyprint linenums" lang="html">
+&lt;form wicket:id=&quot;form&quot;&gt;
+    &lt;input type=&quot;text&quot; value=&quot;&quot; wicket:id=&quot;firstname&quot; /&gt;
+    &lt;input type=&quot;text&quot; value=&quot;&quot; wicket:id=&quot;lastname&quot; /&gt;
+    &lt;input type=&quot;submit&quot; wicket:id=&quot;submit&quot; /&gt;
+&lt;/form&gt;</pre>
+                    <p>The html file looks almost as raw html from designers, we only need to insert <code>wicket:id</code> into the appropriate components.</p>
+                    <p>Next we need to write a code on the java side, which bind wicket components with suitable html componets. The component hierarchy in java code should match the hierarchy in html file</p>
+                  <pre class="prettyprint linenums" lang="java">
+Form&lt;Void&gt; form = new Form(&quot;form&quot;);
+TextField&lt;String&gt; firstname = new TextField&lt;String&gt;(&quot;firstname&quot;, Model.of(&quot;&quot;));
+form.add(firstname);
+TextField&lt;String&gt; lastname = new TextField&lt;String&gt;(&quot;lastname&quot;, Model.of(&quot;&quot;));
+form.add(lastname);
+//todo check correctness of button definition
+Button button = new Button(&quot;submit&quot;);
+form.add(button)
+add(form);
+                  </pre>
+                  <p>It's very important to bind our components with model, if we forgot about that, this could cause a exception with message: <i>Attempt to set model object on null model of component</i>.</p>
+                  </div>
+                <div class="span6">
+                    <h3>TextField</h3>
+                    <p>TextFiled is simple single line input component. It's designed to acquire data from user, data types etc. could be specyfied by <code>org.apache.wicket.util.convert.IConverter</code></p>.
+
+                </div>
+
+                <div class="span6">
+                    <h3>AAAAAA</h3>
+                </div>
+
+            </div>
 		</section>
 		<section id="feedback">
 			<div class="page-header">
